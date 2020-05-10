@@ -20,7 +20,7 @@ class home extends Component {
     let recenListMarkup = this.state.lists ? (
       this.state.lists.map((list) => <List key={list.listId} list={list} />)
     ) : (
-      <p>Loading...</p>
+      <p>Loadingplease wait p>
     );
     return (
       <Grid container spacing={1}>
