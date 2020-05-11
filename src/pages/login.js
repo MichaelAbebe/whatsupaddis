@@ -27,6 +27,13 @@ class login extends Component {
       errors: {},
     };
   }
+  componentWillReceiveProps(nextProps) {
+    if (nextProps.UI.errors) {
+      this.setState({
+        errors: nextProps.UI.errors,
+      });
+    }
+  }
   handleSubmit = (event) => {
     event.preventDefault();
 
@@ -43,7 +50,10 @@ class login extends Component {
     });
   };
   render() {
-    const { classes,UI:{loading} } = this.props;
+    const {
+      classes,
+      UI: { loading },
+    } = this.props;
     const { errors } = this.state;
     return (
       <Grid container className={classes.form}>

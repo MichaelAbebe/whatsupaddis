@@ -2,6 +2,7 @@ import React, { Component } from "react";
 import { Grid } from "@material-ui/core";
 import axios from "axios";
 import List from "../components/List";
+import Profile from "../components/Profile";
 class home extends Component {
   state = { lists: null };
 
@@ -28,7 +29,7 @@ class home extends Component {
           {recenListMarkup}
         </Grid>
         <Grid item sm={4} xs={12}>
-          <p>progile..</p>
+          <Profile />
         </Grid>
       </Grid>
     );
