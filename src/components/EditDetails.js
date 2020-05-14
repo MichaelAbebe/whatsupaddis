@@ -91,6 +91,16 @@ class EditDetails extends Component {
                 onChange={this.handleChange}
                 fullWidth
               />
+                  <TextField
+                name='location '
+                type='text'
+                label='location'
+                placeholder='Where are you from '
+                className={classes.textField}
+                value={this.state.location}
+                onChange={this.handleChange}
+                fullWidth
+              />
               <TextField
                 name='website'
                 type='text'
@@ -101,16 +111,7 @@ class EditDetails extends Component {
                 onChange={this.handleChange}
                 fullWidth
               />
-              <TextField
-                name='location '
-                type='text'
-                label='location '
-                placeholder='Where are you from '
-                className={classes.textField}
-                value={this.state.location}
-                onChange={this.handleChange}
-                fullWidth
-              />
+          
             </form>
           </DialogContent>
           <DialogActions>
