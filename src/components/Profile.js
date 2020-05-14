@@ -1,9 +1,9 @@
 import React, { Component, Fragment } from "react";
 import PropTypes from "prop-types";
-import Tooltip from "@material-ui/core/Tooltip";
+
 import Button from "@material-ui/core/Button";
 import { connect } from "react-redux";
-import { Paper, Typography, withStyles, IconButton } from "@material-ui/core";
+import { Paper, Typography, withStyles } from "@material-ui/core";
 import MuiLink from "@material-ui/core/Link";
 import { Link } from "react-router-dom";
 import LocationOn from "@material-ui/icons/LocationOn";
@@ -14,6 +14,7 @@ import EditIcon from "@material-ui/icons/Edit";
 import { logoutUser, uploadImage } from "../redux/actions/userActions";
 import KeyboardReturn from "@material-ui/icons/KeyboardReturn";
 import EditDetails from "./EditDetails";
+import MyButton from "../util/MyButton";
 const styles = {
   paper: {
     padding: 20,
@@ -90,81 +91,81 @@ class Profile extends Component {
       authenticated ? (
         <Paper className={classes.paper}>
           <div className={classes.profile}>
-            <div className='image-wrapper'>
-              <img className='profile-image' src={imageUrl} alt='profile ' />
+            <div className="image-wrapper">
+              <img className="profile-image" src={imageUrl} alt="profile " />
               <input
-                hidden='hidden'
-                type='file'
-                id='imageInput'
+                hidden="hidden"
+                type="file"
+                id="imageInput"
                 onChange={this.handleImageChange}
               />
-              <Tooltip title='Edit profile picture' placement='top'>
-                <IconButton onClick={this.handleEditPicture} className='button'>
-                  <EditIcon color='primary'></EditIcon>
-                </IconButton>
-              </Tooltip>
+
+              <MyButton
+                tip="Edit profile picture"
+                onClick={this.handleEditPicture}
+                btnClassName="button"
+              >
+                <EditIcon color="primary" />
+              </MyButton>
             </div>
             <hr />
-            <div className='profile-details'>
+            <div className="profile-details">
               <MuiLink
                 component={Link}
                 to={`/users/${handle}`}
-                color='primary'
-                variant='h5'
+                color="primary"
+                variant="h5"
               >
                 @{handle}
               </MuiLink>
               <hr />
-              {bio && <Typography variant='body2'>{bio}</Typography>}
+              {bio && <Typography variant="body2">{bio}</Typography>}
               <hr />
               {location && (
                 <Fragment>
                   {" "}
-                  <LocationOn colot='primary' /> <span>{location}</span>
+                  <LocationOn colot="primary" /> <span>{location}</span>
                   <hr />
                 </Fragment>
               )}
               {website && (
                 <Fragment>
-                  <LinkIcon color='primary' />{" "}
-                  <a href={website} target='_blank' rel='noopener noreferrer'>
-                    {" "}
+                  <LinkIcon color="primary" />{" "}
+                  <a href={website} target="_blank" rel="noopener noreferrer">
                     {website}
                   </a>
                   <hr />
                 </Fragment>
               )}
-              <CalendarToday color='primary' />
-              {""}
+              <CalendarToday color="primary" />
               <span>Joined {dayjs(createdAt).format("MMM YYYY")}</span>
             </div>
-            <Tooltip title='Logout' placement='top'>
-              <IconButton onClick={this.handleLogout}>
-                <KeyboardReturn color='secondary'>Logout</KeyboardReturn>
-              </IconButton>
-            </Tooltip>
+
+            <MyButton tip="Logout" onClick={this.handleLogout}>
+              <KeyboardReturn color="secondary" />
+            </MyButton>
             <EditDetails />
           </div>
         </Paper>
       ) : (
         <Paper className={classes.paper}>
-          <Typography variant='body2' align='center'>
+          <Typography variant="body2" align="center">
             No profile founf,Please log in again{" "}
           </Typography>
           <div className={classes.buttons}>
             <Button
-              variant='contained'
-              color='primary'
+              variant="contained"
+              color="primary"
               component={Link}
-              to='/login'
+              to="/login"
             >
               Login
             </Button>
             <Button
-              variant='contained'
-              color='secondary'
+              variant="contained"
+              color="secondary"
               component={Link}
-              to='/signup'
+              to="/signup"
             >
               Signup
             </Button>

@@ -9,10 +9,13 @@ body {
 .container {
   margin: 80px auto 0 auto;
   max-width: 1200px;
-  display: flex;
+  /* display: flex; */
 }
 .nav-container {
-  margin: auto;
+  margin: auto; 
+}
+.nav-container svg {
+  color: white;
 }
 a {
   text-decoration: none;
