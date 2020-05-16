@@ -8,7 +8,7 @@ import Card from "@material-ui/core/Card";
 
 import CardMedia from "@material-ui/core/CardMedia";
 import CardContent from "@material-ui/core/CardContent";
-
+import MuiLink from "@material-ui/core/Link";
 import { Typography } from "@material-ui/core";
 import { Link } from "react-router-dom";
 import { connect } from "react-redux";
@@ -23,19 +23,25 @@ import DeleteList from "./DeleteList";
 
 const styles = {
   card: {
+    position: "relative",
     float: "left",
-    // display: "inline-table",
     marginLeft: 20,
     marginBottom: 20,
-    minWidth: 200,
+    minWidth: 330,
     maxWidth: 345,
   },
   image: {
-    height: 120,
-    minWidth: 100,
+    height: 180,
+    minWidth: 250,
   },
   content: {
     padding: 5,
+  },
+  comments: {
+    // position: "absolute",
+    marginLeft: -20,
+    marginBottom: -50,
+    textAlign: "center",
   },
 };
 class List extends Component {
@@ -94,12 +100,19 @@ class List extends Component {
         <DeleteList listId={listId} />
       ) : null;
     return (
+    
       <Card className={classes.card}>
+          <MuiLink
+      component={Link}
+      to={`/list/${listId}`}
+      color="primary"
+      variant="h5"
+    >  
         <CardMedia
           className={classes.image}
           image={userImage}
           title="Profile Image"
-        />
+        /> </MuiLink>
         <CardContent className={classes.content}>
           <Typography
             variant="caption"
@@ -109,20 +122,21 @@ class List extends Component {
           >
             {userHandle}
           </Typography>
-
-          {/* Delete List */}
           {deleteButton}
           <Typography variant="body1">{body}</Typography>
           <Typography variant="caption" color="textSecondary">
             {dayjs(createdAt).fromNow()}
           </Typography>
           <br />
-          {likeButton}
-          <span>{likeCount} Likes</span>
-          <MyButton tip="comments">
-            <ChatIcon color="primary" />
-          </MyButton>
-          <span>{commentCount} Comments</span>
+         
+          <CardContent className={classes.comments}>
+            {likeButton}
+            <span>{likeCount} Likes</span>
+            <MyButton tip="comments">
+              <ChatIcon color="primary" />
+            </MyButton>
+            <span>{commentCount} Comments</span>
+          </CardContent>
         </CardContent>
       </Card>
     );

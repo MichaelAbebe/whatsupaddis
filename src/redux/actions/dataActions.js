@@ -54,6 +54,8 @@ export const unlikeList = (listId) => (dispatch) => {
 export const deleteList = (listId) => (dispatch) => {
   axios
     .delete(`/list/${listId}`)
-    .then(() => dispatch({ type: DELETE_LIST, payload: listId }))
+    .then(() => {
+      dispatch({ type: DELETE_LIST, payload: listId });
+    })
     .catch((err) => console.log(err));
 };

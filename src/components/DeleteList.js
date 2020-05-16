@@ -10,7 +10,14 @@ import DeleteOutline from "@material-ui/icons/DeleteOutline";
 import { connect } from "react-redux";
 import { deleteList } from "../redux/actions/dataActions";
 
-const styles = {};
+const styles = {
+  deleteButton: {
+    position: "absolute",
+    left: "85%",
+    top: "55%",
+    color: "red",
+  },
+};
 class DeleteList extends Component {
   state = {
     open: false,
@@ -40,7 +47,7 @@ class DeleteList extends Component {
           onClick={this.handleOpen}
           btnClassName={classes.deleteButton}
         >
-          <DeleteOutline color="secondary" />
+          <DeleteOutline color="red" />
         </MyButton>
         <Dialog
           open={this.state.open}

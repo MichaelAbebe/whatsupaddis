@@ -35,8 +35,10 @@ export default function (state = initialState, action) {
         ...state,
       };
     case DELETE_LIST:
-      index = state.lists.findIndex((list) => list.listId === action.payload);
-      state.lists.splice(index, 1);
+      let indexa = state.lists.findIndex(
+        (list) => list.listId === action.payload
+      );
+      state.lists.splice(indexa, 1);
       return { ...state };
     default:
       return state;
