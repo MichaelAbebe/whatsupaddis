@@ -4,12 +4,13 @@ import { connect } from "react-redux";
 import PropTypes from "prop-types";
 import MyButton from "../util/MyButton";
 //Materil Ui
-import AddIcon from "@material-ui/icons/Add";
+// import AddIcon from "@material-ui/icons/Add";
 import HomeIcon from "@material-ui/icons/Home";
 import Notifications from "@material-ui/icons/Notifications";
 import AppBar from "@material-ui/core/AppBar";
 import Toolbar from "@material-ui/core/Toolbar";
 import Button from "@material-ui/core/Button";
+import PostList from "./PostList";
 
 class Navbar extends Component {
   render() {
@@ -19,9 +20,7 @@ class Navbar extends Component {
         <Toolbar className="nav-container">
           {authenticated ? (
             <Fragment>
-              <MyButton tip="Post">
-                <AddIcon />
-              </MyButton>
+              <PostList />
               <Link to="/">
                 <MyButton tip="Home">
                   <HomeIcon />
