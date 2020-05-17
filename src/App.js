@@ -19,6 +19,7 @@ import { logoutUser, getUserData } from "./redux/actions/userActions";
 import home from "./pages/home";
 import login from "./pages/login";
 import signup from "./pages/signup";
+// import PostDetails from "./components/PostDetails";
 import axios from "axios";
 
 const theme = createMuiTheme(themeFile);
@@ -42,11 +43,16 @@ function App() {
       <Provider store={store}>
         <Router>
           <Navbar />
-          <div className='container'>
+          <div className="container">
             <Switch>
-              <Route exact path='/' component={home} />
-              <AuthRoute exact path='/login' component={login} />
-              <AuthRoute exact path='/signup' component={signup} />
+              <Route exact path="/" component={home} />
+              <AuthRoute exact path="/login" component={login} />
+              <AuthRoute exact path="/signup" component={signup} />
+              {/* <Route
+                exact
+                path="/postdetails/:listId"
+                component={PostDetails}
+              /> */}
             </Switch>
           </div>
         </Router>
