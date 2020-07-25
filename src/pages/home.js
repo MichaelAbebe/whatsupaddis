@@ -1,23 +1,27 @@
 import React, { Component } from "react";
 import { Grid } from "@material-ui/core";
 import PropTypes from "prop-types";
-import List from "../components/List";
-import Profile from "../components/Profile";
+import List from "../components/list/List";
+import Profile from "../components/profile/Profile";
 import { connect } from "react-redux";
 import { getLists } from "../redux/actions/dataActions";
+// import ListSkeleton from "../util/ListSkeleton";
+import LoadingComponent from "../util/LoadingComponent";
+
 class home extends Component {
   componentDidMount() {
     this.props.getLists();
   }
   render() {
     const { lists, loading } = this.props.data;
-    let recenListMarkup = !loading ? (
-      lists.map((list) => <List key={list.listId} list={list} />)
-    ) : (
-      <p>Loading please wait</p>
-    );
+
+    let recenListMarkup = lists.map((list) => (
+      <List key={list.listId} list={list} />
+    ));
+
+    if (loading) return <LoadingComponent />;
     return (
-      <Grid container spacing={1}>
+      <Grid container spacing={16}>
         <Grid item sm={8} xs={12}>
           {recenListMarkup}
         </Grid>

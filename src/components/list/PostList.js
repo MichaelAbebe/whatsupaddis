@@ -2,7 +2,7 @@ import React, { Component, Fragment } from "react";
 import PropTypes from "prop-types";
 import { connect } from "react-redux";
 import withStyles from "@material-ui/core/styles/withStyles";
-import { postList, clearErrors } from "../redux/actions/dataActions";
+import { postList, clearErrors } from "../../redux/actions/dataActions";
 
 import Button from "@material-ui/core/Button";
 import TextField from "@material-ui/core/TextField";
@@ -13,7 +13,7 @@ import AddIcon from "@material-ui/icons/Add";
 import CloseIcon from "@material-ui/icons/Close";
 import DialogTitle from "@material-ui/core/DialogTitle";
 
-import MyButton from "../util/MyButton";
+import MyButton from "../../util/MyButton";
 
 const styles = (theme) => ({
   ...theme.spreadThis,

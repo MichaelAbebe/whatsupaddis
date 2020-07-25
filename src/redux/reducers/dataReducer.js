@@ -5,6 +5,8 @@ import {
   LOADING_DATA,
   DELETE_LIST,
   POST_LIST,
+  SET_LIST,
+  SUBMIT_COMMENT,
 } from "../types";
 
 const initialState = {
@@ -20,6 +22,11 @@ export default function (state = initialState, action) {
         ...state,
         loading: true,
       };
+    case SET_LIST:
+      return {
+        ...state,
+        list: action.payload,
+      };
     case SET_LISTS:
       return {
         ...state,
@@ -32,6 +39,9 @@ export default function (state = initialState, action) {
         (list) => list.listId === action.payload.listId
       );
       state.lists[index] = action.payload;
+      if (state.list.listId === action.payload.listId) {
+        state.list = action.payload;
+      }
       return {
         ...state,
       };
@@ -45,6 +55,14 @@ export default function (state = initialState, action) {
       return {
         ...state,
         lists: [action.payload, ...state.lists],
+      };
+    case SUBMIT_COMMENT:
+      return {
+        ...state,
+        list: {
+          ...state.list,
+          comments: [action.payload, ...state.list.comments],
+        },
       };
     default:
       return state;

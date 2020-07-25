@@ -8,6 +8,9 @@ import {
   LOADING_UI,
   SET_ERRORS,
   CLEAR_ERRORS,
+  STOP_LOADING_UI,
+  SET_LIST,
+  SUBMIT_COMMENT,
 } from "../types";
 import axios from "axios";
 
@@ -29,7 +32,20 @@ export const getLists = () => (dispatch) => {
       });
     });
 };
-
+//Get list detils
+export const getList = (listId) => (dispatch) => {
+  dispatch({ type: LOADING_UI });
+  axios
+    .get(`/list/${listId}`)
+    .then((res) => {
+      dispatch({
+        type: SET_LIST,
+        payload: res.data,
+      });
+      dispatch({ type: STOP_LOADING_UI });
+    })
+    .catch((err) => console.log(err));
+};
 //Post List
 export const postList = (newList) => (dispatch) => {
   dispatch({ type: LOADING_UI });
@@ -37,7 +53,7 @@ export const postList = (newList) => (dispatch) => {
     .post("/list", newList)
     .then((res) => {
       dispatch({ type: POST_LIST, payload: res.data });
-      dispatch({ type: CLEAR_ERRORS });
+      dispatch(clearErrors());
     })
     .catch((err) => {
       dispatch({ type: SET_ERRORS, payload: err.response.data });
@@ -80,4 +96,39 @@ export const deleteList = (listId) => (dispatch) => {
 
 export const clearErrors = () => (dispatch) => {
   dispatch({ type: CLEAR_ERRORS });
+};
+
+//Submit a comment
+
+export const submitComment = (listId, commentData) => (dispatch) => {
+  axios
+    .post(`/list/${listId}/comment`, commentData)
+    .then((res) => {
+      dispatch({
+        type: SUBMIT_COMMENT,
+        payload: res.data,
+      });
+      dispatch(clearErrors());
+    })
+    .catch((err) => {
+      dispatch({
+        type: SET_ERRORS,
+        payload: err.response.data,
+      });
+    });
+};
+
+export const getUserData = (userHandle) => (dispatch) => {
+  dispatch({ type: LOADING_DATA });
+  axios
+    .get(`/user/${userHandle}`)
+    .then((res) => {
+      dispatch({
+        type: SET_LISTS,
+        payload: res.data.lists,
+      });
+    })
+    .catch(() => {
+      dispatch({ type: SET_LISTS, payload: null });
+    });
 };

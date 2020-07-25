@@ -8,7 +8,7 @@ import jwtDecode from "jwt-decode";
 import { ThemeProvider as MuiThemeProvider } from "@material-ui/core/styles";
 import createMuiTheme from "@material-ui/core/styles/createMuiTheme";
 //components
-import Navbar from "./components/Navbar";
+import Navbar from "./components/layout/Navbar";
 import AuthRoute from "./util/AuthRoute";
 //Redux
 import { Provider } from "react-redux";
@@ -19,6 +19,7 @@ import { logoutUser, getUserData } from "./redux/actions/userActions";
 import home from "./pages/home";
 import login from "./pages/login";
 import signup from "./pages/signup";
+import user from "./pages/user";
 // import PostDetails from "./components/PostDetails";
 import axios from "axios";
 
@@ -48,11 +49,12 @@ function App() {
               <Route exact path="/" component={home} />
               <AuthRoute exact path="/login" component={login} />
               <AuthRoute exact path="/signup" component={signup} />
-              {/* <Route
+              <Route exact path="/users/:handle" component={user} />
+              <Route
                 exact
-                path="/postdetails/:listId"
-                component={PostDetails}
-              /> */}
+                path="/users/:handle/list/:listId"
+                component={user}
+              />
             </Switch>
           </div>
         </Router>

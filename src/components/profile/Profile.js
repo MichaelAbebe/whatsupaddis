@@ -11,57 +11,16 @@ import LinkIcon from "@material-ui/icons/Link";
 import CalendarToday from "@material-ui/icons/CalendarToday";
 import dayjs from "dayjs";
 import EditIcon from "@material-ui/icons/Edit";
-import { logoutUser, uploadImage } from "../redux/actions/userActions";
+import { logoutUser, uploadImage } from "../../redux/actions/userActions";
 import KeyboardReturn from "@material-ui/icons/KeyboardReturn";
 import EditDetails from "./EditDetails";
-import MyButton from "../util/MyButton";
-const styles = {
-  paper: {
-    padding: 20,
-  },
-  profile: {
-    "& .image-wrapper": {
-      textAlign: "center",
-      position: "relative",
-      "& button": {
-        position: "absolute",
-        top: "80%",
-        left: "70%",
-      },
-    },
-    "& .profile-image": {
-      width: 200,
-      height: 200,
-      objectFit: "cover",
-      maxWidth: "100%",
-      borderRadius: "50%",
-    },
-    "& .profile-details": {
-      textAlign: "center",
-      "& span, svg": {
-        verticalAlign: "middle",
-      },
-      "& a": {
-        color: "#00bcd4",
-      },
-    },
-    "& hr": {
-      border: "none",
-      margin: "0 0 10px 0",
-    },
-    "& svg.button": {
-      "&:hover": {
-        cursor: "pointer",
-      },
-    },
-  },
-  buttons: {
-    textAlign: "center",
-    "& a": {
-      margin: "20px 10px",
-    },
-  },
-};
+import MyButton from "../../util/MyButton";
+// import ProfileSkeleton from "../../util/ProfileSkeleton";
+// import LoadingComponent from "../../util/LoadingComponent";
+
+const styles = (theme) => ({
+  ...theme.spreadThis,
+});
 
 class Profile extends Component {
   handleImageChange = (event) => {
@@ -150,7 +109,7 @@ class Profile extends Component {
       ) : (
         <Paper className={classes.paper}>
           <Typography variant="body2" align="center">
-            No profile founf,Please log in again{" "}
+            No profile found,Please log in again{" "}
           </Typography>
           <div className={classes.buttons}>
             <Button
@@ -172,9 +131,8 @@ class Profile extends Component {
           </div>
         </Paper>
       )
-    ) : (
-      <p>loading ....</p>
-    );
+    ) : // <LoadingComponent />
+    null;
     return profileMarkup;
   }
 }
